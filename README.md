@@ -1,5 +1,5 @@
-feat-image
-==========
+Errors
+======
 
 Error utilities
 
