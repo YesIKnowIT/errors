@@ -12,7 +12,6 @@ describe("errors", () => {
 
     assert.instanceOf(instance, Error);
     assert.equal(instance.name, name);
-    console.error(instance);
   });
 
   it("should create Error subclass instances", () => {
@@ -32,6 +31,21 @@ describe("errors", () => {
       FirstError,
       SecondError,
     } = error.codes;
+
+    const instance = new FirstError("");
+    assert.instanceOf(instance, FirstError);
+    assert.notInstanceOf(instance, SecondError);
+  });
+
+  it("should sttach extra properties to the error instance", () => {
+    require("./samples.js");
+    const {
+      FirstError,
+    } = error.codes;
+
+    const instance = new FirstError("", {foo: "bar"});
+    assert.instanceOf(instance, FirstError);
+    assert.equal(instance.foo, "bar");
   });
 
 });
